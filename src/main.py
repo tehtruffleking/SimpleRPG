@@ -4,6 +4,7 @@ import settings as Settings
 
 from background import Background
 from ground import Ground
+from player import Player
 
 # main game loop
 def main():
@@ -22,6 +23,7 @@ def main():
 
     background = Background()
     ground = Ground()
+    player = Player()
 
     while True:
 
@@ -42,6 +44,7 @@ def main():
 
         background.render(display_surface)
         ground.render(display_surface)
+        display_surface.blit(player.image, player.rect)
 
         pygame.display.update()
         FRAMES_PER_SECOND_CLOCK.tick(Settings.FRAMES_PER_SECOND)

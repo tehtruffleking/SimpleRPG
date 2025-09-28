@@ -34,7 +34,7 @@ pygame.display.set_caption("RPG Game")
 class Background(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.bgimage = pygame.image.load("/data/rpggame/images/Background.png")
+        self.bgimage = pygame.image.load("C:/Users/Christian/PycharmProjects/SimpleRPG/data/images/Background.png")
         self.bgY = 0
         self.bgX = 0
 
@@ -45,7 +45,7 @@ class Background(pygame.sprite.Sprite):
 class Ground(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("/data/rpggame/images/Ground.png")
+        self.image = pygame.image.load("C:/Users/Christian/PycharmProjects/SimpleRPG/data/images/Ground.png")
         self.rect = self.image.get_rect(center=(350, 350))
 
     def render(self):
@@ -54,6 +54,26 @@ class Ground(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.image = pygame.image.load("C:/Users/Christian/PycharmProjects/SimpleRPG/data/sprites/Player_Sprite_R.png")
+        self.rect = self.image.get_rect()
+
+        self.vx = 0
+        self.pos = VECTOR((340, 240))
+        self.vel = VECTOR((0, 0))
+        self.acc = VECTOR((0, 0))
+        self.direction = "RIGHT"
+
+    def move(self):
+        pass
+
+    def update(self):
+        pass
+
+    def attack(self):
+        pass
+
+    def jump(self):
+        pass
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -63,6 +83,7 @@ class Enemy(pygame.sprite.Sprite):
 
 background = Background()
 ground = Ground()
+player = Player()
 
 # main game loop
 while True:
@@ -84,6 +105,7 @@ while True:
 
     background.render()
     ground.render()
+    display_surface.blit(player.image, player.rect)
 
     pygame.display.update()
     FRAMES_PER_SECOND_CLOCK.tick(FRAMES_PER_SECOND)
