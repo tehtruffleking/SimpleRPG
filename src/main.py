@@ -12,10 +12,10 @@ def main():
     pygame.init()
 
     # system variables
-    FRAMES_PER_SECOND_CLOCK = pygame.time.Clock()
+    clock = pygame.time.Clock()
 
     # physics variables
-    VECTOR = pygame.math.Vector2
+    # VECTOR = pygame.math.Vector2
 
     # build and initialize display
     display_surface = pygame.display.set_mode((Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT))
@@ -25,7 +25,9 @@ def main():
     ground = Ground()
     player = Player()
 
-    while True:
+    game_running = True
+    while game_running:
+        dt = clock.tick(Settings.FRAMES_PER_SECOND) / 1000.0
 
         for event in pygame.event.get():
 
@@ -42,12 +44,13 @@ def main():
             if event.type == pygame.KEYDOWN:
                 pass
 
+        player.move(dt)
         background.render(display_surface)
         ground.render(display_surface)
         display_surface.blit(player.image, player.rect)
 
         pygame.display.update()
-        FRAMES_PER_SECOND_CLOCK.tick(Settings.FRAMES_PER_SECOND)
+        # clock.tick(Settings.FRAMES_PER_SECOND)
 
 if __name__ == "__main__":
     main()
